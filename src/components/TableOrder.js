@@ -23,9 +23,9 @@ import Popover from 'react-bootstrap/Popover';
 // import Profil from "assets/images/usernav.png";
 // import Logout from "assets/images/logout.svg";
 import { API } from "config/api";
-const TableOrder = ({dataShipment, dataTransporter, dataVehicle}) => {
+const TableOrder = ({dataOrder}) => {
 
-
+console.log("dataOrderTable", dataOrder?.data?.order_list)
   const [idTransporter, setIdTransporter] = useState();
     const [asal, setAsal] = useState();
      const [idEdit, setIdEdit] = useState();
@@ -155,40 +155,32 @@ const handleEditData = ( e) => {
         </tr>
       </thead>
       <tbody>
-         {/* {dataShipment?.data?.data &&
-                      dataShipment?.data?.data?.map((data, i) => ( */}
+        {dataOrder?.data?.order_list &&
+                      dataOrder?.data?.order_list?.map((data, i) => (
         <tr>
-          <td>..</td>
-              <td>
-                <div className="row px-2">
-  <div className="col d-flex align-items-center ">
-    <div className="row ">
-                  sas
+          <td>{i+1}</td>
+          <td className="td-dono">
+            <div className="row px-2">
+              <div className="col-sm-8 d-flex align-items-center ">
+                  <div className="row ">
+                      {data?.do_no}
                   </div>
+              </div>
+              <div className="col">
+                <div className="row d-flex   justify-content-end" >
+                  <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+                    <button type="button" class="btn btn-warning">Kelola</button>
+                  </OverlayTrigger>
                 </div>
-                            <div className="col">
-                                <div className="row d-flex   justify-content-end" >
-                                   <OverlayTrigger trigger="click" placement="right" overlay={popover}>
- <button type="button" class="btn btn-warning"
-                        >Kelola</button>
-                        </OverlayTrigger>
-                           </div>
-                            </div>
-                </div>
-              
-                        
-                          
-                         {" "}
-                             
-                          </td>
-          <td>..</td>
-          <td>..</td>
-          <td>..</td>
-           <td>..</td>
-         
-       
+              </div>
+            </div>
+          </td>
+          <td> {data?.goods_name}</td>
+          <td> {data?.origin_name}</td>
+          <td> {data?.destination_name}</td>
+          <td> {data?.destination_address}</td>
         </tr>
-        {/* ))} */}
+         ))} 
         
       </tbody>
     </Table>
