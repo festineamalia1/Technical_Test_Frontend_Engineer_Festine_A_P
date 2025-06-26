@@ -14,7 +14,6 @@ import {
 import { useParams, Link, useLocation } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import axios from "axios";
-import RegisterForm from "../components/RegisterForm";
 import { connect } from "react-redux";
 import { fetchData } from "actions";
 import LoginForm from "components/LoginForm";

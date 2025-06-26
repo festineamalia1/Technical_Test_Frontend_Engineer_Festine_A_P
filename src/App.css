@@ -297,6 +297,7 @@ align-items: center;
 	font-weight:bold;
 	padding:6px 24px;
 	text-decoration:none;
+  height: 60px;
 }
 .button-filter:hover {
 	background-color:#4d7a03e5;
@@ -330,6 +331,7 @@ align-items: center;
 }
 .button-filter-pop:active {
 	position:relative;
+  background-color:#2975a5;
 	top:1px;
 }
 
@@ -349,6 +351,10 @@ select.form-control {
   /* border: 2px solid #bcbcbc; */
   outline: none;
   box-shadow: 0 0 0 0.2rem transparent;
+}
+
+.date-form{
+  font-size: 14px !important;
 }
 
 input-group:focus,textarea:focus,
