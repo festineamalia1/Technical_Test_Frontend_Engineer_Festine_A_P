@@ -24,6 +24,7 @@ import 'swiper/css/pagination';
 import { FreeMode, Pagination, Autoplay} from 'swiper/modules';
 import TabOrder from "../components/TabOrder"
 import TableOrder from "../components/TableOrder"
+import FilterOrder from "../components/FilterOrder"
 
 // import Barang from "../assets/images/barang1.jpg";
 
@@ -142,23 +143,11 @@ console.log("data benner", dataBanner?.data?.data)
         <div className="row mt-5">
             <TabOrder/>
         </div>
+      
+            <FilterOrder/>
+        
+
         <div className="row mt-3">
-            <div className="col">
-            <div class="list-layanan">
-              {dataService?.data?.data &&
-                      dataService?.data?.data?.map((data, i) => (
-              <CardLayanan
-              fotoService={data?.service_icon}
-              namaLayanan={data?.service_name}
-              idLayanan={data?.service_code}
-              tarifLayanan={data?.service_tariff}
-              />
-              ))}
-                
-            </div>
-            </div>
-        </div>
-        <div className="row mt-5">
          <TableOrder/>
         </div>
       </div>
