@@ -36,6 +36,7 @@ const [orderType, setOrderType] = useState('');
 const [orderName, setOrderName] = useState('');
 const [createAt, setCreateAt] = useState('');
 const [updateAt, setUpdateAt] = useState('');
+const [filterActive, setFilterActive] = useState('');
 const [origin, setOrigin] = useState(['BDG', 'JKT', 'SBY', 'DPS', 'MLG']);
 const [destination, setDestination] = useState([]);
 const TOKEN = localStorage.getItem('token')
@@ -76,9 +77,10 @@ const TOKEN = localStorage.getItem('token')
       });
   };
 
-
+console.log("setFilterActive", filterActive)
    const handleDataOder = (status) => {
         // e.preventDefault();
+        setFilterActive(status)
     const headers = {
       "Content-Type": "application/x-www-form-urlencoded",
     };
@@ -175,7 +177,12 @@ console.log("keyword", keyword)
                      
                         {
                           data?.status == 0 ?
-                          <div  className="button button-filter py-2"
+                          <div  className={`button button-filter py-2 
+                            ${
+                            filterActive === 0?
+                              `button-filter-active`
+                              :``}
+                          `}
                           onClick={() => {handleDataOder(data?.status)}
                           }
                           >
@@ -188,7 +195,12 @@ console.log("keyword", keyword)
                         </div>
                         </div>
                           : data?.status == 1 ?
-                           <div  className="button button-filter py-2"  
+                           <div  className={`button button-filter py-2
+                             ${
+                            filterActive === 1?
+                              `button-filter-active`
+                              :``}
+                            `}
                            onClick={() => {handleDataOder(data?.status)}}
                            >
                               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-file-earmark-spreadsheet" viewBox="0 0 16 16">
@@ -198,7 +210,12 @@ console.log("keyword", keyword)
                               </div>
                              
                           : data?.status == 2 ?
-                           <div className="button button-filter py-2"  
+                           <div className={`button button-filter py-2
+                             ${
+                            filterActive === 2?
+                              `button-filter-active`
+                              :``}
+                            `}  
                            onClick={() => {handleDataOder(data?.status)}}
                            >
                                <div className="my-2">
@@ -210,7 +227,12 @@ console.log("keyword", keyword)
                               </div>
                               </div>
                           : data?.status == 3 ?
-                            <div className="button button-filter py-2"  
+                            <div className={`button button-filter py-2
+                               ${
+                            filterActive === 3?
+                              `button-filter-active`
+                              :``}
+                              `} 
                             onClick={() => {handleDataOder(data?.status)}}
                             >
                             <div className="my-2">
@@ -221,7 +243,12 @@ console.log("keyword", keyword)
                               </div>
                               </div>
                           : data?.status == 4 ?
-                           <div className="button button-filter py-2"  
+                           <div className={`button button-filter py-2
+                             ${
+                            filterActive === 4?
+                              `button-filter-active`
+                              :``}
+                            `}  
                          onClick={() => {handleDataOder(data?.status)}}
                            >
                                <div className="my-2">

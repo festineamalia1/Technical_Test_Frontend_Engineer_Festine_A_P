@@ -304,7 +304,9 @@ align-items: center;
    opacity: 0.7;
    	color:#ffffff;
 }
-.button-filter:active {
+.button-filter-active {
+  background-color:#4d7a03e5;
+  color:#ffffff;
 	position:relative;
 	top:1px;
 }
