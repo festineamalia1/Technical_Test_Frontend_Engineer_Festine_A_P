@@ -11,8 +11,8 @@ const LoginForm = (props) => {
   const navigate = useNavigate ();
 
    const [see, setSee] = useState(false);
-     const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+     const [email, setEmail] = useState("admin@gmail.com");
+  const [password, setPassword] = useState("admin123");
  
   console.log("statusLog", props.statusLog);
 
