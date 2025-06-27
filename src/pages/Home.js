@@ -20,7 +20,8 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 import { FreeMode, Pagination, Autoplay} from 'swiper/modules';
-import TableOrder from "../components/TableOrder"
+import TableOrder from "../components/TableOrder";
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 // import Barang from "../assets/images/barang1.jpg";
 
@@ -36,15 +37,18 @@ const [orderType, setOrderType] = useState('');
 const [orderName, setOrderName] = useState('');
 const [createAt, setCreateAt] = useState('');
 const [updateAt, setUpdateAt] = useState('');
-const [filterActive, setFilterActive] = useState('');
+const [filterActive, setFilterActive] = useState(0);
 const [origin, setOrigin] = useState(['BDG', 'JKT', 'SBY', 'DPS', 'MLG']);
 const [destination, setDestination] = useState([]);
 const TOKEN = localStorage.getItem('token')
+  const [loading, setLoading] = useState(false);
+const [hasMore, setHasMore] = useState(true);
+  const [page, setPage] = useState(1);
 
-
-
+console.log("page", page)
      const fetchDataOder = () => {
       //  e.preventDefault();
+      setLoading(true)
     const headers = {
       "Content-Type": "application/x-www-form-urlencoded",
     };
@@ -60,14 +64,18 @@ const TOKEN = localStorage.getItem('token')
         origin_code: [],
         destination_code: []
     },
-    page: 1
+    page: page
 }
       )
       .then(function (response) {
+         setLoading(false)
         console.log(response);
         // alert("tambah Data Berhasil");
         // window.location.reload();
+         setPage(prev => prev + 1);
         setDataOrder(response)
+
+        
       })
       .catch(function (error) {
         console.log(error);
@@ -79,8 +87,10 @@ const TOKEN = localStorage.getItem('token')
 
 console.log("setFilterActive", filterActive)
    const handleDataOder = (status) => {
+      setPage(prev => prev + 1);
         // e.preventDefault();
         setFilterActive(status)
+         setLoading(true)
     const headers = {
       "Content-Type": "application/x-www-form-urlencoded",
     };
@@ -90,7 +100,7 @@ console.log("setFilterActive", filterActive)
        {
     keyword: keyword,
     filter: {
-        order_status: [status ],
+        order_status: [status],
         origin_code: origin,
         destination_code: destination,
         order_type:[orderType],
@@ -99,14 +109,22 @@ console.log("setFilterActive", filterActive)
         updated_at:[updateAt]
 
     },
-    page: 1
+    page: page
 }
       )
       .then(function (response) {
+         setLoading(false)
         console.log(response);
         // alert("tambah Data Berhasil");
         // window.location.reload();
         setDataOrder(response)
+       
+    //      if (response.length === 0) {
+    //   setHasMore(false);
+    // } else {
+    //   setDataOrder([...dataOrder, ...response]);
+      setPage(page + 1);
+    // }
       })
       .catch(function (error) {
         console.log(error);
@@ -116,7 +134,13 @@ console.log("setFilterActive", filterActive)
       });
   };
 
- 
+
+
+  const handleScroll = () => {
+    if (window.innerHeight + document.documentElement.scrollTop + 100 >= document.documentElement.offsetHeight && !loading) {
+      handleDataOder(filterActive)
+    }
+  };
 
      const handleReset = () => {
           setKeyword('')
@@ -143,9 +167,17 @@ console.log("keyword", keyword)
            setOrigin([])
      }
 
+  // const handleScroll = () => {
+  //   if (window.innerHeight + document.documentElement.scrollTop + 100 >= document.documentElement.offsetHeight && !loading) {
+  //     handleDataOder(filterActive, page+1)
+  //   }
+  // };
+
 
   useEffect(() => {
     fetchDataOder();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   
@@ -462,7 +494,9 @@ console.log("keyword", keyword)
         
 
         <div className="row mt-3">
+       
          <TableOrder dataOrder={dataOrder}/>
+
         </div>
       </div>
     </section>
