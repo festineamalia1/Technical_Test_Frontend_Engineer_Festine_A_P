@@ -1,10 +1,6 @@
 import React, { useState, useRef, useContext } from "react";
 import { connect } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { redirect } from "react-router";
-
-// import Profil from "assets/images/usernav.png";
-// import Logout from "assets/images/logout.svg";
 import { API, BASE_URL } from "config/api";
 const NavBar = (props) => {
   const [active, setActive] = useState(false);
@@ -18,9 +14,7 @@ const NavBar = (props) => {
 
   return (
     <>
-      {/* isLoading || !chanels.chanels ? ( // <h1>Loading...</h1>
-      ) : error ? ( // <h1>error {error.message} </h1>
-       ) : */}
+     
 <nav class="navbar navbar-expand-lg bg-white border-bottom">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center">

@@ -3,16 +3,7 @@ import { connect } from "react-redux";
 
 import { Link, useNavigate } from "react-router-dom";
 import {
-  Container,
-  Row,
-  Col,
-  Image,
-  Jumbotron,
-  Button,
-  Form,
   Table,
-  Modal,
-  Spinner,
   Badge
 } from "react-bootstrap";
 import axios from "axios";
@@ -24,8 +15,6 @@ import Popover from 'react-bootstrap/Popover';
 // import Logout from "assets/images/logout.svg";
 import { API } from "config/api";
 const TableOrder = ({dataOrder}) => {
-
-console.log("dataOrderTable", dataOrder?.data?.order_list)
   const [idTransporter, setIdTransporter] = useState();
     const [asal, setAsal] = useState();
      const [idEdit, setIdEdit] = useState();
@@ -47,8 +36,6 @@ console.log("dataOrderTable", dataOrder?.data?.order_list)
     setVehicle(data?.id_vehicle)
      setIdTransporter(data?.id_transporter)
   };
-
-  console.log("data_id", dataOrder?.data?.order_list)
 
   const handleDeleteOrder = () => {
           // e.preventDefault();

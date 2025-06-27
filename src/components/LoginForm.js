@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-
-import { Container, Row, Col, Button, Form, Modal } from "react-bootstrap";
 import { Link, useNavigate  } from "react-router-dom";
 import { API, setAuthToken } from "config/api";
 import { connect } from "react-redux";
@@ -14,11 +12,7 @@ const LoginForm = (props) => {
      const [email, setEmail] = useState("admin@gmail.com");
   const [password, setPassword] = useState("admin123");
  
-  console.log("statusLog", props.statusLog);
-
-  // useEffect(() => {
-  //   props.onHandleLogin()
-  // }, []);
+ 
   const StatusLog = window.localStorage.getItem("LogStatus");
   const handleRedirect = () => {
     window.location.reload();

@@ -1,19 +1,4 @@
 import React, { useEffect, useState } from "react";
-
-import {
-  Container,
-  Row,
-  Col,
-  Image,
-  Jumbotron,
-  Button,
-  Form,
-  Table,
-  Modal,
-} from "react-bootstrap";
-import { useParams, Link, useLocation } from "react-router-dom";
-import NavBar from "../components/NavBar";
-import axios from "axios";
 import { connect } from "react-redux";
 import { fetchData } from "actions";
 import LoginForm from "components/LoginForm";

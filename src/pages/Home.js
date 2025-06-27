@@ -1,18 +1,6 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
-import {
-  Container,
-  Row,
-  Col,
-  Image,
-  Jumbotron,
-  Button,
-  Form,
-  Table,
-  Modal,
-  Spinner,
-} from "react-bootstrap";
-import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import { API } from "config/api";
 import axios from "axios";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -21,13 +9,9 @@ import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 import { FreeMode, Pagination, Autoplay} from 'swiper/modules';
 import TableOrder from "../components/TableOrder";
-import InfiniteScroll from 'react-infinite-scroll-component';
-
-// import Barang from "../assets/images/barang1.jpg";
 
 export default function Home() {
 
-const navigate = useNavigate();
 
   const [dataOrder, setDataOrder] = useState([]);
 const [show, setShow] = useState(false);
@@ -60,9 +44,7 @@ const handleCheckUpdate = () => {
   setCreateAt('')
 }
 
-console.log("page", page)
      const fetchDataOder = () => {
-      //  e.preventDefault();
       setLoading(true)
     const headers = {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -85,8 +67,6 @@ console.log("page", page)
       .then(function (response) {
          setLoading(false)
         console.log(response);
-        // alert("tambah Data Berhasil");
-        // window.location.reload();
          setPage(prev => prev + 1);
         setDataOrder(response)
 
@@ -100,7 +80,6 @@ console.log("page", page)
       });
   };
 
-console.log("setFilterActive", filterActive)
    const handleDataOder = (status) => {
       setPage(prev => prev + 1);
         // e.preventDefault();
@@ -130,16 +109,8 @@ console.log("setFilterActive", filterActive)
       .then(function (response) {
          setLoading(false)
         console.log(response);
-        // alert("tambah Data Berhasil");
-        // window.location.reload();
         setDataOrder(response)
-       
-    //      if (response.length === 0) {
-    //   setHasMore(false);
-    // } else {
-    //   setDataOrder([...dataOrder, ...response]);
       setPage(page + 1);
-    // }
       })
       .catch(function (error) {
         console.log(error);
@@ -165,13 +136,6 @@ console.log("setFilterActive", filterActive)
           setUpdateAt('')
      }
 
-
-
-
-  
-
-console.log("keyword", keyword)
-
     const handleOrigin = () => {
            setOrigin(['BDG', 'JKT', 'SBY', 'DPS', 'MLG'])
            setDestination([])
@@ -195,9 +159,6 @@ console.log("keyword", keyword)
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  
- 
 
   return (
     <>
@@ -540,7 +501,7 @@ breakpoints={{
         </div>
         <div className="col-sm-auto">
           <button type="button" class="btn btn-info"
-           onClick={() => {handleDataOder(1)}}
+           onClick={() => {handleDataOder(filterActive)}}
           >Terapkan</button>
         </div>
               </div>
