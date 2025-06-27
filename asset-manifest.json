@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Technical_Test_Frontend_Engineer_Festine_A_P/static/css/main.6428c36b.css",
-    "main.js": "/Technical_Test_Frontend_Engineer_Festine_A_P/static/js/main.9efa3d06.js",
+    "main.js": "/Technical_Test_Frontend_Engineer_Festine_A_P/static/js/main.f6988eeb.js",
     "static/js/453.0001feb9.chunk.js": "/Technical_Test_Frontend_Engineer_Festine_A_P/static/js/453.0001feb9.chunk.js",
     "static/media/bootstrap-icons.woff?": "/Technical_Test_Frontend_Engineer_Festine_A_P/static/media/bootstrap-icons.1295669cd4e305c97f2c.woff",
     "static/media/bootstrap-icons.woff2?": "/Technical_Test_Frontend_Engineer_Festine_A_P/static/media/bootstrap-icons.92ea18a81d737146ff04.woff2",
@@ -9,11 +9,11 @@
     "static/media/order-icon.png": "/Technical_Test_Frontend_Engineer_Festine_A_P/static/media/order-icon.cd70fc06fa516c79f561.png",
     "index.html": "/Technical_Test_Frontend_Engineer_Festine_A_P/index.html",
     "main.6428c36b.css.map": "/Technical_Test_Frontend_Engineer_Festine_A_P/static/css/main.6428c36b.css.map",
-    "main.9efa3d06.js.map": "/Technical_Test_Frontend_Engineer_Festine_A_P/static/js/main.9efa3d06.js.map",
+    "main.f6988eeb.js.map": "/Technical_Test_Frontend_Engineer_Festine_A_P/static/js/main.f6988eeb.js.map",
     "453.0001feb9.chunk.js.map": "/Technical_Test_Frontend_Engineer_Festine_A_P/static/js/453.0001feb9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6428c36b.css",
-    "static/js/main.9efa3d06.js"
+    "static/js/main.f6988eeb.js"
   ]
 }
