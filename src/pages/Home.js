@@ -36,6 +36,8 @@ const [orderType, setOrderType] = useState('');
 const [orderName, setOrderName] = useState('');
 const [createAt, setCreateAt] = useState('');
 const [updateAt, setUpdateAt] = useState('');
+const [origin, setOrigin] = useState(['BDG', 'JKT', 'SBY', 'DPS', 'MLG']);
+const [destination, setDestination] = useState([]);
 const TOKEN = localStorage.getItem('token')
 
 
@@ -87,8 +89,8 @@ const TOKEN = localStorage.getItem('token')
     keyword: keyword,
     filter: {
         order_status: [status ],
-        origin_code: [],
-        destination_code: [],
+        origin_code: origin,
+        destination_code: destination,
         order_type:[orderType],
         order_type_name:[orderName],
         created_at:[createAt],
@@ -129,6 +131,15 @@ const TOKEN = localStorage.getItem('token')
 
 console.log("keyword", keyword)
 
+    const handleOrigin = () => {
+           setOrigin(['BDG', 'JKT', 'SBY', 'DPS', 'MLG'])
+           setDestination([])
+     }
+
+       const handleDestination = () => {
+           setDestination(['MDN', 'BJM', 'PKU', 'PLB', 'BPN'])
+           setOrigin([])
+     }
 
 
   useEffect(() => {
@@ -245,12 +256,21 @@ console.log("keyword", keyword)
             <div className="row pt-3 px-4">
               <div className="col-sm-2">
                 <div className="row">
-                  <div  className="button button-filter-pop"
-
+                  <div  className={`button button-filter-pop ${
+                    origin.length === 0 ?
+                    ``
+                    :`button-filter-pop-active`
+                  }`}
+                    onClick={()=> handleOrigin()}
                   >Origin</div>
                 </div>
                 <div className="row">
-                  <div  className="button button-filter-pop"
+                  <div  className={`button button-filter-pop ${
+                    destination.length === 0?
+                    ``
+                    :`button-filter-pop-active`
+                  }`}
+                    onClick={()=> handleDestination()}
 
                   >Destination</div>
                 </div>
