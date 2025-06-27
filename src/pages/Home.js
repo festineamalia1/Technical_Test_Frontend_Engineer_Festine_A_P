@@ -41,9 +41,24 @@ const [filterActive, setFilterActive] = useState(0);
 const [origin, setOrigin] = useState([]);
 const [destination, setDestination] = useState([]);
 const TOKEN = localStorage.getItem('token')
-  const [loading, setLoading] = useState(false);
+const [loading, setLoading] = useState(false);
 const [hasMore, setHasMore] = useState(true);
-  const [page, setPage] = useState(1);
+const [page, setPage] = useState(1);
+const [checkUpdate, setCheckUpdate] = useState(false);
+const [checkCreate, setCheckCreate] = useState(false);
+
+
+const handleCheckCreate = () => {
+  setCheckCreate(true)
+  setCheckUpdate(false)
+  setUpdateAt('')
+}
+
+const handleCheckUpdate = () => {
+  setCheckUpdate(true)
+  setCheckCreate(false)
+  setCreateAt('')
+}
 
 console.log("page", page)
      const fetchDataOder = () => {
@@ -167,11 +182,7 @@ console.log("keyword", keyword)
            setOrigin([])
      }
 
-  // const handleScroll = () => {
-  //   if (window.innerHeight + document.documentElement.scrollTop + 100 >= document.documentElement.offsetHeight && !loading) {
-  //     handleDataOder(filterActive, page+1)
-  //   }
-  // };
+
 
   const handleCari = () => {
      setOrigin(['BDG', 'JKT', 'SBY', 'DPS', 'MLG'])
@@ -181,8 +192,8 @@ console.log("keyword", keyword)
 
   useEffect(() => {
     fetchDataOder();
-    // window.addEventListener('scroll', handleScroll);
-    // return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   
@@ -398,7 +409,13 @@ console.log("keyword", keyword)
          
             <div className="row">
               <div className="col-sm-auto d-flex align-items-center">
-                 <input className="form-check-input" type="checkbox" value="" id="defaultCheck1"/>
+                 <input className="form-check-input" type="checkbox" value="" id="defaultCheck1"
+                 checked={
+                  checkCreate === true?
+                  true : false 
+                 }
+                 onChange={() => handleCheckCreate()}
+                 />
                  &nbsp;
                  <label className="form-check-label" for="defaultCheck1">
                 <span className="text-secondary"> <small>Created At:</small></span>
@@ -409,7 +426,10 @@ console.log("keyword", keyword)
                 <input type="date" className="form-control date-form" placeholder="Masukan tanggal"
                 value={createAt} 
                 onChange={(e) => setCreateAt(e.target.value)}
-                
+                disabled={
+                checkCreate === true?
+                  false : true 
+                }
                 /></div>
           
               
@@ -446,7 +466,13 @@ console.log("keyword", keyword)
           <div className="form-check">
             <div className="row">
               <div className="col-sm-auto d-flex align-items-center">
-                 <input className="form-check-input" type="checkbox" value="" id="defaultCheck1"/>
+                 <input className="form-check-input" type="checkbox" value="" id="defaultCheck1"
+                  checked={
+                  checkUpdate === true?
+                  true : false 
+                 }
+                  onChange={() => handleCheckUpdate()}
+                 />
                  &nbsp;
                  <label className="form-check-label" for="defaultCheck1">
                 <span className="text-secondary"> <small>Updated At:</small></span>
@@ -456,6 +482,8 @@ console.log("keyword", keyword)
                 <input type="date" className="form-control date-form" placeholder="Masukan tanggal" 
                 value={updateAt}
                 onChange={(e) => setUpdateAt(e.target.value)}
+                disabled={checkUpdate === true?
+                  false : true }
                 
                 /></div>
               </div>
