@@ -216,8 +216,40 @@ console.log("keyword", keyword)
                     slidesPerView={5}
                     spaceBetween={5}
                     freeMode={true}
+breakpoints={{
+         560: {
+          slidesPerView: 1.3,
+          spaceBetween: 10,
+        },
+        640: {
+          slidesPerView: 2.3,
+          spaceBetween: 10,
+        },
+      
+        768: {
+          slidesPerView: 3.3,
+          spaceBetween: 10,
+        },
+         790: {
+          slidesPerView: 3.8,
+          spaceBetween: 10,
+        },
+         900: {
+          slidesPerView: 4,
+          spaceBetween: 10,
+        },
+         980: {
+          slidesPerView: 4.3,
+          spaceBetween: 10,
+        },
+         990: {
+          slidesPerView: 4.8,
+          spaceBetween: 10,
+        }
+      }}
+       pagination={{ clickable: true }} 
                   
-                    modules={[FreeMode]}
+                    modules={[FreeMode, Pagination]}
                     className="mySwiper"
                   >
                     {dataOrder?.data?.summary_do && dataOrder?.data?.summary_do.map((data, i) => ( 
