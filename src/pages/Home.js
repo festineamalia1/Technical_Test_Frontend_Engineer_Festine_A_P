@@ -38,7 +38,7 @@ const [orderName, setOrderName] = useState('');
 const [createAt, setCreateAt] = useState('');
 const [updateAt, setUpdateAt] = useState('');
 const [filterActive, setFilterActive] = useState(0);
-const [origin, setOrigin] = useState(['BDG', 'JKT', 'SBY', 'DPS', 'MLG']);
+const [origin, setOrigin] = useState([]);
 const [destination, setDestination] = useState([]);
 const TOKEN = localStorage.getItem('token')
   const [loading, setLoading] = useState(false);
@@ -173,11 +173,16 @@ console.log("keyword", keyword)
   //   }
   // };
 
+  const handleCari = () => {
+     setOrigin(['BDG', 'JKT', 'SBY', 'DPS', 'MLG'])
+     setShow(true)
+  }
+
 
   useEffect(() => {
     fetchDataOder();
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    // window.addEventListener('scroll', handleScroll);
+    // return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   
@@ -364,15 +369,24 @@ console.log("keyword", keyword)
       <div className="col">
         <div className="form-check">
           <input className="form-check-input" type="checkbox" value="SINGLE" id="defaultCheck1"
+          checked={
+            orderType === "SINGLE" ?
+            true : false
+          }
           onChange={(e) => setOrderType(e.target.value)}
           />
           <label className="form-check-label" for="defaultCheck1">
-            <span className="text-secondary"> <small>Single</small></span>
+            <span className="text-secondary" > <small>Single</small></span>
           </label>
         </div>
- 
+
+
         <div className="form-check">
           <input className="form-check-input" type="checkbox" value="MULTI" id="defaultCheck1"
+          checked={
+            orderType === "MULTI" ?
+            true : false
+          }
             onChange={(e) => setOrderType(e.target.value)}
           />
           <label className="form-check-label" for="defaultCheck1">
@@ -407,14 +421,23 @@ console.log("keyword", keyword)
       <div className="col">
          <div className="form-check">
           <input className="form-check-input" type="checkbox" value="Kontrak" id="defaultCheck1"
+            checked={
+            orderName === "Kontrak" ?
+            true : false
+          }
           onChange={(e) => setOrderName(e.target.value)}
           />
-          <label className="form-check-label" for="defaultCheck1">
+          <label className="form-check-label" for="defaultCheck1"
+          >
             <span className="text-secondary"> <small>Kontrak </small></span>
           </label>
         </div>
         <div className="form-check">
           <input className="form-check-input" type="checkbox" value="Non-Kontrak" id="defaultCheck1"
+             checked={
+            orderName === "Non-Kontrak" ?
+            true : false
+          }
           onChange={(e) => setOrderName(e.target.value)}/>
           <label className="form-check-label" for="defaultCheck1">
             <span className="text-secondary"> <small>Non Kontrak</small></span>
@@ -484,7 +507,7 @@ console.log("keyword", keyword)
     </div>
     <div className="col-md-auto  d-flex   justify-content-end">
       <button type="button" class="btn btn-primary"
-      onClick={() => {setShow(true)}}
+      onClick={() => {handleCari()}}
                         >Cari</button>
                         
     </div>
