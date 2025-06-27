@@ -83,7 +83,7 @@ console.log("dataOrderTable", dataOrder?.data?.order_list)
       {/* <span className="badge badge-secondary">cancel</span>&nbsp;/&nbsp;<span className="badge badge-secondary">yes</span> */}
     <div  className="col-auto">
     <h5 > 
-      <Badge bg="primary" trigger="click">
+      <Badge bg="primary" trigger="click" onClick={() => window.location.reload()}>
       cancel
     </Badge>
     </h5>
@@ -171,7 +171,9 @@ const handleEditData = ( e) => {
                   <OverlayTrigger trigger="click" placement="right" overlay={popover}>
                     <button type="button" class="btn btn-warning"
                     onClick={() => setIdHapus(data?.do_id)}
-                    >Kelola</button>
+                    >
+                      Kelola
+                      </button>
                   </OverlayTrigger>
                 </div>
               </div>
