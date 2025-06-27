@@ -48,6 +48,28 @@ console.log("dataOrderTable", dataOrder?.data?.order_list)
      setIdTransporter(data?.id_transporter)
   };
 
+  console.log("data_id", dataOrder?.data?.order_list)
+
+  const handleDeleteOrder = () => {
+          // e.preventDefault();
+      
+      axios
+        .delete(
+          `https://jsonplaceholder.typicode.com/posts/${idHapus}`)
+        .then(function (response) {
+          console.log(response);
+           alert("Delete Data Berhasil");
+           window.location.reload();
+          
+        })
+        .catch(function (error) {
+          console.log(error);
+          alert(
+            error.response.data.message
+          );
+        });
+    };
+
   const popover = (
   <Popover id="popover-basic">
     <Popover.Header as="h3">Hapus Data</Popover.Header>
@@ -68,7 +90,9 @@ console.log("dataOrderTable", dataOrder?.data?.order_list)
     </div>
        <div  className="col-auto p-0">
    <h5>
-      <Badge bg="secondary">
+      <Badge bg="secondary"
+      onClick={() => handleDeleteOrder(idHapus)}
+      >
       Yes
     </Badge>
    </h5>
@@ -79,7 +103,7 @@ console.log("dataOrderTable", dataOrder?.data?.order_list)
       
     </Popover.Body>
   </Popover>
-);
+  );
 
 
 const handleEditData = ( e) => {
@@ -112,33 +136,9 @@ const handleEditData = ( e) => {
         );
       });
   };
-  const handleOpenHapus = (id) => {
-    setSmShow(true)
-    setIdHapus(id)
-  }
-
-  const handleHapus = () => {
-   
-    const headers = {
-      "Content-Type": "application/x-www-form-urlencoded",
-    };
-    axios
-      .post(
-        `${API}/shipments/delete/${idHapus}`
-      )
-      .then(function (response) {
-     
-        alert("Hapus Data Berhasil");
-         window.location.reload();
-      })
-      .catch(function (error) {
-        console.log(error);
-        alert(
-          "Hapus Data Gagal, Nama Barang Pastikan berbeda, untuk harga beli, harga jual dan stok hanya dapat di isi angka"
-        );
-      });
-  };
  
+
+      
  
   return (
     <>
@@ -169,7 +169,9 @@ const handleEditData = ( e) => {
               <div className="col">
                 <div className="row d-flex   justify-content-end" >
                   <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-                    <button type="button" class="btn btn-warning">Kelola</button>
+                    <button type="button" class="btn btn-warning"
+                    onClick={() => setIdHapus(data?.do_id)}
+                    >Kelola</button>
                   </OverlayTrigger>
                 </div>
               </div>
